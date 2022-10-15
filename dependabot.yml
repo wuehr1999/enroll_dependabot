@@ -11,5 +11,3 @@ updates:
       interval: daily
     labels:
       - "topic: ci"
-Footer
-
