@@ -1,7 +1,6 @@
 #!/bin/bash
 
 source repos.sh
-repos=$REPOS
 
 _reponame() {
   local base=$(basename $1)
@@ -9,12 +8,13 @@ _reponame() {
   echo $reponame
 }
 
-for r in $repos; do
+for r in "${REPOS[@]}"; do
   echo $r
   git clone $r
   name=$(echo $(_reponame $r))
   cd $name
   git checkout -b dependabot
+  mkdir .github
   cp ../dependabot.yml .github/
   git add .
   git commit -m "enroll dependabot"
